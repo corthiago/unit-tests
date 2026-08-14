@@ -1,6 +1,6 @@
 # Java Unit Testing
 
-A focused Java project that demonstrates how to write clear, maintainable unit tests with **JUnit 6** and **Mockito 5**, and how to assess test effectiveness with **PIT mutation testing**. It is designed as a practical learning portfolio: each mini-project introduces a realistic testing need, from pure business logic to dependencies such as repositories and user accounts.
+A focused Java project that demonstrates how to write clear, maintainable unit tests with **JUnit 6** and **Mockito 5**, and how to assess test effectiveness with **Pitest mutation testing**. It is designed as a practical learning portfolio: each mini-project introduces a realistic testing need, from pure business logic to dependencies such as repositories and user accounts.
 
 ## Why code quality matters
 

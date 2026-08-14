@@ -1,6 +1,6 @@
 # Java Unit Testing
 
-A focused Java project that demonstrates how to write clear, maintainable unit tests with **JUnit 6** and **Mockito 5**. It is designed as a practical learning portfolio: each mini-project introduces a realistic testing need, from pure business logic to dependencies such as repositories and user accounts.
+A focused Java project that demonstrates how to write clear, maintainable unit tests with **JUnit 6** and **Mockito 5**, and how to assess test effectiveness with **PIT mutation testing**. It is designed as a practical learning portfolio: each mini-project introduces a realistic testing need, from pure business logic to dependencies such as repositories and user accounts.
 
 ## Why code quality matters
 
@@ -36,6 +36,7 @@ The e-commerce and authentication test suites use Mockito mocks and stubs to iso
 - Maven
 - JUnit Jupiter 6.1.2
 - Mockito 5.22.0
+- PIT Mutation Testing 1.25.9
 
 ## Run the tests
 
@@ -46,6 +47,36 @@ mvn test
 ```
 
 Maven compiles the project and executes every test under `src/test/java`.
+
+## Mutation testing with Pitest a.k.a PIT
+
+Traditional tests confirm that the application behaves as expected. **Mutation testing** goes further: PIT deliberately introduces small changes—called *mutants*—into the production code, then runs the test suite against each change. This measures whether the tests would detect realistic defects, not just whether they execute a line of code.
+
+- **Killed mutant:** at least one test failed after PIT changed the code. This is the desired result; the test suite caught the simulated defect.
+- **Survived mutant:** all tests passed after the change. This highlights a potential gap in the test suite.
+- **No coverage:** no test executed the changed code.
+
+PIT complements code coverage: high line coverage means code was executed, while a strong mutation score shows that the assertions can detect incorrect behavior.
+
+### Run mutation tests
+
+From the project root, run:
+
+```bash
+mvn test-compile org.pitest:pitest-maven:mutationCoverage
+```
+
+PIT compiles the project, generates mutants for the production classes, runs the JUnit test suite, and creates an HTML report.
+
+### View the mutation report
+
+After a successful run, open `target/pit-reports/index.html` in a browser. On macOS, run:
+
+```bash
+open target/pit-reports/index.html
+```
+
+The report shows the mutation score for each class and method, the mutation applied, and the test that killed it when one is available. Start with surviving mutants: they are useful prompts for adding missing assertions, edge-case tests, or validation scenarios.
 
 ## Project structure
 
@@ -70,3 +101,4 @@ src/
 - Using Mockito annotations: `@Mock`, `@InjectMocks`, and `@Captor`
 - Stubbing collaborators and verifying interactions
 - Using argument captors to assert the values sent to dependencies
+- Assessing test-suite effectiveness with PIT mutation testing

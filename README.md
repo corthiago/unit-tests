@@ -15,6 +15,7 @@ This repository follows the Arrange–Act–Assert (AAA) pattern and covers succ
 | `com.thiago.calculator` | Calculator | Fundamental JUnit assertions for arithmetic operations, boundary conditions, and exceptions—without test doubles. |
 | `com.thiago.ecommerce` | Order service | Isolating a service from its repository, stubbing return values and failures, verifying interactions, parameterized tests, and capturing saved arguments. |
 | `com.thiago.authms` | Authentication service | Testing login and registration flows with mocked repositories and users, including valid credentials, missing users, invalid passwords, and duplicate registrations. |
+| `com.thiago.bankguard` | Transaction validator | Testing rule-based transaction screening, including invalid amounts, failed-attempt blocks, international and PIX review thresholds, and boundary values. |
 
 ## Test doubles: replacing collaborators in a unit test
 
@@ -85,11 +86,13 @@ src/
 ├── main/java/com/thiago/
 │   ├── calculator/
 │   ├── ecommerce/
-│   └── authms/
+│   ├── authms/
+│   └── bankguard/
 └── test/java/com/thiago/
     ├── calculator/
     ├── ecommerce/
-    └── authms/
+    ├── authms/
+    └── bankguard/
 ```
 
 ## What this project demonstrates
